@@ -6,6 +6,19 @@
 \usepackage{amsmath}
 \usepackage{estruturaApresentacao}
 
+% Page de titre pour chaque section (fond couleur et texte blanc)
+\AtBeginSection[]{
+	{
+		\setbeamercolor{background canvas}{bg=IFSPPrimario}
+		\begin{frame}[plain]
+			\centering
+			\vfill
+			{\color{white}\Huge\bfseries \insertsection}
+			\vfill
+		\end{frame}
+	}
+}
+
 \begin{document}
 
 \titre{L'Architecture Logicielle}
