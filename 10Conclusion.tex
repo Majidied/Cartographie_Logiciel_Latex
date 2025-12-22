@@ -1,0 +1,255 @@
+% Section 8 : Conclusion
+
+\section{Conclusion}
+
+% =====================================================
+\begin{frame}{Récapitulatif}
+  
+  Nous avons fait un \textbf{voyage complet} dans l'univers de l'architecture logicielle~!
+  
+  \vspace{0.5cm}
+  
+  \textbf{Ce que nous avons appris~:}
+  
+  \begin{enumerate}
+    \item \textbf{L'Architecture Logicielle} = Comment organiser le code d'une application
+    \item \textbf{Les Principes Fondamentaux}~: Abstraction, Encapsulation, Séparation des responsabilités
+    \item \textbf{La Démarche en 4~Étapes}~: Analyser → Définir → Concevoir → Valider
+    \item \textbf{Les 2~Vues Essentielles}~: Couches (logique) et Niveaux (physique)
+    \item \textbf{Les Types d'Architectures}~: Monolithique, Microservices, SOA, Hexagonale...
+    \item \textbf{La Cartographie}~: Diagrammes de Packages, Composants, Déploiement
+  \end{enumerate}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Les Points Clés à Retenir (1/2)}
+  
+  \textbf{1. Il n'y a pas UNE seule bonne architecture}
+  
+  \begin{itemize}
+    \item Chaque architecture a ses avantages et inconvénients
+    \item Le choix dépend~: de la taille de l'application, de l'équipe, des besoins de performance, du budget, du temps
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{2. On peut combiner plusieurs architectures}
+  
+  \begin{itemize}
+    \item Architecture en Couches (organisation du code)
+    \item + Pattern MVC (pour la présentation)
+    \item + Architecture Hexagonale (pour isoler le métier)
+    \item + Déploiement N-Tiers (pour la scalabilité)
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Les Points Clés à Retenir (2/2)}
+  
+  \textbf{3. L'architecture évolue avec le temps}
+  
+  \begin{itemize}
+    \item On peut commencer simple et évoluer~:
+    \item Monolithique → Monolithique Modulaire → Microservices
+  \end{itemize}
+  
+  \vspace{0.5cm}
+  
+  \textbf{4. La qualité de l'architecture est cruciale}
+  
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{Bonne architecture}
+        \begin{itemize}
+          \item [\checkmark] Code facile à comprendre
+          \item [\checkmark] Code facile à modifier
+          \item [\checkmark] Code facile à tester
+          \item [\checkmark] Application performante
+          \item [\checkmark] Application sécurisée
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \begin{alertblock}{Mauvaise architecture}
+        \begin{itemize}
+          \item [\texttimes] Code spaghetti
+          \item [\texttimes] Bugs en cascade
+          \item [\texttimes] Impossible d'ajouter des fonctionnalités
+          \item [\texttimes] Équipe frustrée
+        \end{itemize}
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Aller Plus Loin}
+  
+  \textbf{Pour les Débutants~:}
+  \begin{itemize}
+    \item Bien comprendre les \textbf{couches} (Présentation, Métier, Données)
+    \item Apprendre le \textbf{pattern MVC}
+    \item Pratiquer la \textbf{séparation des responsabilités}
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Pour les Intermédiaires~:}
+  \begin{itemize}
+    \item Approfondir l'\textbf{architecture en Couches} (5~couches)
+    \item Maîtriser les \textbf{Design Patterns} (Repository, Singleton, Observer...)
+    \item Découvrir l'\textbf{architecture Hexagonale}
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Pour les Avancés~:}
+  \begin{itemize}
+    \item Explorer les \textbf{Microservices}
+    \item Approfondir le \textbf{Domain-Driven Design (DDD)}
+    \item Maîtriser l'\textbf{Event-Driven Architecture}
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Ressources pour Continuer}
+  
+  \textbf{Livres~:}
+  
+  \begin{itemize}
+    \item \og{}Clean Architecture\fg{} - Robert C. Martin
+    \item \og{}Domain-Driven Design\fg{} - Eric Evans
+    \item \og{}Building Microservices\fg{} - Sam Newman
+    \item \og{}Patterns of Enterprise Application Architecture\fg{} - Martin Fowler
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Sites Web~:}
+  
+  \begin{itemize}
+    \item \url{https://martinfowler.com/} (articles sur l'architecture)
+    \item \url{https://microservices.io/} (patterns microservices)
+    \item \url{https://c4model.com/} (modélisation d'architecture)
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Pratique~:}
+  
+  \begin{itemize}
+    \item Créez de petits projets
+    \item Refactorez du code existant
+    \item Lisez du code open source
+    \item Participez à des code reviews
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Mot de la Fin}
+  
+  \begin{alertblock}{L'architecture logicielle, c'est comme construire une maison}
+    \begin{itemize}
+      \item On ne met pas le toit avant les fondations
+      \item On planifie avant de construire
+      \item On peut rénover et améliorer avec le temps
+      \item Une bonne architecture dure des années
+    \end{itemize}
+  \end{alertblock}
+  
+  \vspace{0.5cm}
+  
+  \begin{block}{Mais surtout}
+    \centering
+    \textit{\og{}La meilleure architecture est celle qui répond aux besoins actuels tout en permettant l'évolution future\fg{}}
+  \end{block}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{N'oubliez pas}
+  
+  \begin{itemize}
+    \item \textbf{Commencez simple} (KISS~: Keep It Simple, Stupid)
+    \item \textbf{N'ajoutez de la complexité que quand c'est nécessaire} (YAGNI~: You Ain't Gonna Need It)
+    \item \textbf{Refactorez régulièrement} (amélioration continue)
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Mission Accomplie}
+  
+  \textbf{Vous savez maintenant~:}
+  
+  \begin{itemize}
+    \item [\checkmark] Ce qu'est l'architecture logicielle
+    \item [\checkmark] Pourquoi c'est important
+    \item [\checkmark] Comment la concevoir
+    \item [\checkmark] Quels types d'architectures existent
+    \item [\checkmark] Comment la cartographier
+  \end{itemize}
+  
+  \vspace{1cm}
+  
+  \begin{center}
+    \Large \textbf{\textcolor{IFSPAccent}{Félicitations~!}}
+    
+    \vspace{0.3cm}
+    
+    \large Vous êtes maintenant capable de comprendre et de discuter d'architecture logicielle comme un pro~!
+  \end{center}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Annexe~: Glossaire des Termes Principaux}
+  
+  \begin{center}
+    \small
+    \begin{tabular}{|l|p{7cm}|}
+      \hline
+      \textbf{Terme} & \textbf{Définition Simple} \\
+      \hline
+      Abstraction & Cacher les détails compliqués \\
+      \hline
+      API & Interface pour communiquer avec un système \\
+      \hline
+      Couplage & Degré de dépendance entre modules \\
+      \hline
+      Cohésion & Degré de liaison entre éléments d'un module \\
+      \hline
+      Composant & Morceau de code réutilisable \\
+      \hline
+      Design Pattern & Recette pour résoudre un problème courant \\
+      \hline
+      Framework & Boîte à outils de développement \\
+      \hline
+      Microservices & Architecture avec plein de petits services indépendants \\
+      \hline
+      Monolithe & Application d'un seul bloc \\
+      \hline
+      Repository & Gestionnaire d'accès aux données \\
+      \hline
+      Scalabilité & Capacité à gérer plus de charge \\
+      \hline
+    \end{tabular}
+  \end{center}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}[plain]
+  \centering
+  \Huge \textbf{\textcolor{IFSPPrimario}{Merci pour votre attention~!}}
+  
+  \vspace{1cm}
+  
+  \Large Questions~?
+\end{frame}

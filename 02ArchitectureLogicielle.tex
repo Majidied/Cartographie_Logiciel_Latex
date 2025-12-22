@@ -1,0 +1,267 @@
+\section{Introduction}
+
+\begin{frame}
+    \frametitle{Pourquoi cette présentation ?}
+    \begin{itemize}
+        \item Passer de la vision «\,boîte noire\,» à la \alert{boîte blanche}~: voir l'intérieur du logiciel.
+        \item Relier \textbf{architecture logicielle} (organisation du code) et \textbf{architecture technique} (infrastructure).
+        \item Montrer que les choix de l'une influencent directement l'autre (couplage fort).
+        \item Garder trois contraintes en tête~: \textcolor{IFSPAccent}{sécurité}, \textcolor{IFSPAccent}{disponibilité}, \textcolor{IFSPAccent}{performance}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Boîte blanche et couplage fort}
+    \begin{itemize}
+        \item Boîte noire~: on voit le résultat, pas le fonctionnement.
+        \item Boîte blanche~: on ouvre pour comprendre composants, flux et règles.
+        \item Couplage fort avec la technique~: comme deux danseurs, chaque pas influence l'autre (choix de code {$\leftrightarrow$} choix d'infra).
+    \end{itemize}
+\end{frame}
+
+\section{Définition et bases}
+
+\begin{frame}
+    \frametitle{Définition simple}
+    \begin{itemize}
+        \item Organisation et structure du code pour répondre aux besoins et durer.
+        \item Rôle 1~: \textbf{structurer} les solutions adaptées aux besoins utilisateurs.
+        \item Rôle 2~: \textbf{décomposer} en morceaux compréhensibles et modifiables.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{5 concepts de décomposition}
+    \begin{itemize}
+        \item Couches (layers)~: présentation, métier, services, persistance.
+        \item Modules~: regroupent des fonctionnalités proches (clients, commandes, paiements...).
+        \item Composants~: briques réutilisables (bouton, formulaire, menu).
+        \item Design patterns~: recettes (MVC, Singleton, Observer, Repository...).
+        \item Frameworks~: boîtes à outils (React, Spring, Django...).
+    \end{itemize}
+\end{frame}
+
+\section{Démarche en 4 étapes}
+
+\begin{frame}
+    \frametitle{Vue d'ensemble}
+    \begin{itemize}
+        \item Processus \textbf{itératif} (on répète) et \textbf{incrémental} (on ajoute petit à petit).
+        \item Objectif~: réduire le risque en validant tôt et souvent.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Étape 1~: Analyser les besoins}
+    \begin{itemize}
+        \item Qui utilise~? quelles fonctionnalités~? quels volumes~? quelles contraintes~?
+        \item Exemple e-commerce~: recherche produit, paiement en ligne, 10k utilisateurs simultanés, sécurité forte.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Étape 2~: Définir la structure}
+    \begin{itemize}
+        \item Choisir le style~: monolithe, microservices, client-serveur, n-tiers.
+        \item Décider du nombre de couches et des frameworks (ex.~: React + Spring Boot).
+        \item Comparable à décider du type de maison et du nombre d'étages.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Étape 3~: Concevoir les composants}
+    \begin{itemize}
+        \item Identifier les briques (liste produits, panier, paiement...).
+        \item Définir les échanges entre briques et les patterns (MVC, Repository...).
+        \item Comme placer meubles et prises dans chaque pièce.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Étape 4~: Valider et ajuster}
+    \begin{itemize}
+        \item Vérifier qualité, performances, sécurité.
+        \item Revenir aux étapes 2/3 si nécessaire~; améliorer à chaque itération.
+        \item Inspection de chantier avant livraison.
+    \end{itemize}
+\end{frame}
+
+\section{Deux vues essentielles}
+
+\begin{frame}
+    \frametitle{Vue en couches (logique)}
+    \begin{itemize}
+        \item Organisation conceptuelle du code~: UI $\rightarrow$ contrôleur $\rightarrow$ métier $\rightarrow$ services $\rightarrow$ persistance.
+        \item Règle d'or~: chaque couche parle seulement à la couche du dessous.
+        \item Évite le \textit{code spaghetti} et facilite les remplacements.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Vue en niveaux (physique)}
+    \begin{itemize}
+        \item Où les composants tournent~: 1-tier, 2-tiers, 3-tiers, n-tiers.
+        \item Exemple 3-tiers web~: navigateur $\rightarrow$ serveur web/API $\rightarrow$ base de données.
+        \item Sépare charge, sécurité et disponibilité.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Couches vs niveaux}
+    \begin{itemize}
+        \item Couches = logique~; niveaux = machines.
+        \item Une même couche peut rester sur un seul niveau ou être répartie.
+        \item Viser~: code propre + déploiement adaptable.
+    \end{itemize}
+\end{frame}
+
+\section{Principes et patterns}
+
+\begin{frame}
+    \frametitle{Principes fondamentaux}
+    \begin{itemize}
+        \item Abstraction~: cacher les détails, exposer l'essentiel.
+        \item Encapsulation~: protéger les données et contrôler l'accès.
+        \item Séparation des responsabilités~: une tâche par composant.
+        \item Faible couplage / forte cohésion~: dépendances minimales, modules homogènes.
+        \item Modularité et extensibilité (Open/Closed)~: ajouter sans casser.
+        \item Réutilisabilité~: mêmes briques partout où possible.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Patterns clés}
+    \begin{itemize}
+        \item MVC~: séparer modèle, vue, contrôleur.
+        \item Repository~: isoler l'accès aux données.
+        \item Singleton~: une instance unique partagée.
+        \item Observer~: notifier plusieurs consommateurs sur événement.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Qualités d'une bonne architecture}
+    \begin{itemize}
+        \item Maintenabilité, testabilité, évolutivité, scalabilité.
+        \item Performance et sécurité sans sacrifier la simplicité.
+        \item Réutilisation et collaboration facilitées.
+    \end{itemize}
+\end{frame}
+
+\section{Styles d'architecture}
+
+\begin{frame}
+    \frametitle{Monolithique vs monolithique modulaire}
+    \begin{itemize}
+        \item Monolithe~: un bloc unique, simple à démarrer mais peu flexible.
+        \item Monolithe modulaire~: un déploiement unique mais modules bien séparés, prêt pour évoluer.
+        \item À choisir pour petites applis, MVP ou migration progressive.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Client-serveur et n-tiers}
+    \begin{itemize}
+        \item Client-serveur~: UI côté client, logique et données côté serveur.
+        \item N-tiers~: séparer présentation, applicatif, données (scalabilité, sécurité accrues).
+        \item Idéal pour apps d'entreprise et sites web à forte charge.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{En couches et microservices}
+    \begin{itemize}
+        \item Architecture en couches~: organisation logique du code dans un même processus.
+        \item Microservices~: services indépendants, chaque domaine avec sa base et ses déploiements.
+        \item Microservices = flexibilité et scalabilité, mais complexité accrue.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{SOA et hexagonale}
+    \begin{itemize}
+        \item SOA~: services orchestrés via un bus (ESB), adapté aux SI hétérogènes.
+        \item Hexagonale (ports/adaptateurs)~: domaine métier au centre, dépendances plug-in.
+        \item Favorisent l'indépendance vis-à-vis des technologies externes.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Event-driven, MVC et DDD}
+    \begin{itemize}
+        \item Event-driven~: composants décorrélés via événements (Kafka, RabbitMQ...).
+        \item MVC comme style complet pour UI (push/pull).
+        \item Domain-Driven Design~: modèle métier central, bounded contexts clairement délimités.
+    \end{itemize}
+\end{frame}
+
+\section{Cartographie}
+
+\begin{frame}
+    \frametitle{Pourquoi cartographier~?}
+    \begin{itemize}
+        \item Comprendre, communiquer, documenter et décider des évolutions.
+        \item Trois vues UML utiles~: logique (packages), implémentation (composants), déploiement (nœuds).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Exemples de vues}
+    \begin{itemize}
+        \item Vue logique~: dépendances entre modules (clients, commandes, produits...).
+        \item Vue d'implémentation~: composants React/Spring/BD + APIs externes.
+        \item Vue de déploiement~: load balancer, serveurs web, base de données, stockage.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Modèle C4 (résumé)}
+    \begin{itemize}
+        \item Contexte~: acteurs et systèmes voisins.
+        \item Conteneurs~: applications et bases déployées.
+        \item Composants~: modules internes d'une app.
+        \item Code~: classes et fonctions détaillées.
+    \end{itemize}
+\end{frame}
+
+\section{Conclusion}
+
+\begin{frame}
+    \frametitle{À retenir}
+    \begin{itemize}
+        \item Pas d'architecture unique~: choisir selon besoins, équipe, budget, contraintes.
+        \item Combinaisons possibles~: couches + MVC + hexagonale + déploiement n-tiers.
+        \item Faire simple d'abord (KISS), éviter la complexité inutile (YAGNI), refactorer souvent.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Aller plus loin}
+    \begin{itemize}
+        \item Livres~: Clean Architecture (Robert C. Martin), DDD (Eric Evans), Building Microservices (Sam Newman).
+        \item Sites~: martinfowler.com, microservices.io, c4model.com.
+        \item Pratique~: petits projets, refactoring, lecture de code open-source, revues de code.
+    \end{itemize}
+\end{frame}
+
+\section{Annexes}
+
+\begin{frame}
+    \frametitle{Checklist rapide}
+    \begin{itemize}
+        \item Code clair, responsabilités séparées, dépendances injectables.
+        \item Tests présents, performances mesurées, cache et requêtes optimisés.
+        \item Sécurité~: données protégées, mots de passe hashés, autorisations gérées.
+        \item Scalabilité~: goulots identifiés, ajout de nœuds possible.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Glossaire express}
+    \begin{itemize}
+        \item \textbf{Couplage}~: dépendance entre modules~; \textbf{Cohésion}~: lien interne d'un module.
+        \item \textbf{Port/Adaptateur}~: interface et implémentation concrète (hexagonale).
+        \item \textbf{Tier}~: niveau physique de déploiement~; \textbf{Layer}~: niveau logique de code.
+        \item \textbf{ESB}~: bus d'intégration central (SOA)~; \textbf{Broker}~: bus d'événements (event-driven).
+    \end{itemize}
+\end{frame}

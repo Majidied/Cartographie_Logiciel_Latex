@@ -1,0 +1,422 @@
+% Section 4 : Les 2 Vues Essentielles
+
+\section{Les 2~Vues Essentielles}
+
+% =====================================================
+\begin{frame}{Pourquoi 2~Vues~?}
+  
+  Pour comprendre une architecture, on a besoin de 2~points de vue différents, comme pour une maison~:
+  
+  \vspace{0.5cm}
+  
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Vue d'architecte}
+        Le plan dessiné sur papier
+        
+        \vspace{0.2cm}
+        
+        \textbf{→ Vue logique}
+      \end{block}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Vue du chantier}
+        Les vraies machines et matériaux
+        
+        \vspace{0.2cm}
+        
+        \textbf{→ Vue physique}
+      \end{block}
+    \end{column}
+  \end{columns}
+  
+  \vspace{0.5cm}
+  
+  \begin{alertblock}{Les deux sont nécessaires~!}
+  \end{alertblock}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{VUE N°1~: La Vue en Couches (Layer View) - Vue LOGIQUE}
+  
+  \textbf{C'est quoi~?}
+  
+  La vue en couches montre comment l'application est organisée \textbf{conceptuellement}, dans notre tête.
+  
+  \vspace{0.5cm}
+  
+  \begin{block}{Comme un sandwich}
+    \begin{itemize}
+      \item Le pain du haut = l'interface utilisateur
+      \item La salade = la logique métier
+      \item La viande = les services
+      \item Le pain du bas = la base de données
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Les Couches Typiques (1/3)}
+  
+  \textbf{Couche 1~: Présentation / Interface Utilisateur (UI)}
+  
+  \begin{itemize}
+    \item \textbf{Rôle}~: Ce que l'utilisateur voit et touche
+    \item \textbf{Exemples}~: Boutons, formulaires, menus, pages web
+    \item \textbf{Technologies}~: HTML, CSS, JavaScript, React, Angular
+    \item \textbf{Analogie}~: La vitrine d'un magasin
+  \end{itemize}
+  
+  \vspace{0.5cm}
+  
+  \textbf{Couche 2~: Contrôleur / Logique de Présentation}
+  
+  \begin{itemize}
+    \item \textbf{Rôle}~: Recevoir les demandes et organiser la réponse
+    \item \textbf{Exemple}~: Quand vous cliquez sur \og{}Ajouter au panier\fg{}, c'est le contrôleur qui reçoit la demande
+    \item \textbf{Analogie}~: Le chef de salle dans un restaurant (il prend votre commande et la transmet à la cuisine)
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Les Couches Typiques (2/3)}
+  
+  \textbf{Couche 3~: Logique Métier / Domain}
+  
+  \begin{itemize}
+    \item \textbf{Rôle}~: Les règles du métier, les calculs, la vraie intelligence de l'application
+    \item \textbf{Exemples}~:
+    \begin{itemize}
+      \item Calculer le prix total (produits + TVA + frais de port)
+      \item Vérifier si un produit est en stock
+      \item Appliquer une réduction si le client est VIP
+    \end{itemize}
+    \item \textbf{Analogie}~: Les cuisiniers qui préparent le plat selon la recette
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Couche 4~: Services / Logique d'Application}
+  
+  \begin{itemize}
+    \item \textbf{Rôle}~: Coordonner plusieurs opérations métier
+    \item \textbf{Exemple}~: Orchestrer le processus de commande complet
+    \item \textbf{Analogie}~: Le chef de cuisine qui coordonne tous les cuisiniers
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Les Couches Typiques (3/3)}
+  
+  \textbf{Couche 5~: Persistance / Accès aux Données}
+  
+  \begin{itemize}
+    \item \textbf{Rôle}~: Parler à la base de données
+    \item \textbf{Exemples}~:
+    \begin{itemize}
+      \item Sauvegarder une commande
+      \item Récupérer la liste des clients
+      \item Modifier un produit
+      \item Supprimer un compte
+    \end{itemize}
+    \item \textbf{Technologies}~: SQL, Hibernate, JPA, Repository Pattern
+    \item \textbf{Analogie}~: Le garde-manger où on stocke tous les ingrédients
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Règles de Communication entre Couches}
+  
+  \begin{alertblock}{Règle d'Or}
+    On communique \textbf{uniquement avec la couche d'en dessous} (comme une chaîne)
+  \end{alertblock}
+  
+  \vspace{0.3cm}
+  
+  \begin{center}
+    Présentation \\
+    $\downarrow$ \\
+    Contrôleur \\
+    $\downarrow$ \\
+    Logique Métier \\
+    $\downarrow$ \\
+    Services \\
+    $\downarrow$ \\
+    Persistance \\
+    $\downarrow$ \\
+    Base de Données
+  \end{center}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Règles de Communication~: Pourquoi~?}
+  
+  \textbf{Pourquoi cette règle~?}
+  
+  \begin{itemize}
+    \item Pour éviter le désordre (code spaghetti)
+    \item Pour pouvoir changer une couche sans casser les autres
+    \item Pour que le code reste propre et organisé
+  \end{itemize}
+  
+  \vspace{0.5cm}
+  
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{alertblock}{Mauvaise pratique}
+        L'interface utilisateur qui parle directement à la base de données
+        
+        \vspace{0.2cm}
+        
+        → Si on change la BD, il faut changer l'interface~!
+      \end{alertblock}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{Bonne pratique}
+        Interface → Contrôleur → Logique → Persistance → BD
+        
+        \vspace{0.2cm}
+        
+        → Chaque couche a son rôle bien défini~!
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{VUE N°2~: La Vue en Niveaux (Tier View) - Vue PHYSIQUE}
+  
+  \textbf{C'est quoi~?}
+  
+  La vue en niveaux montre où les morceaux de l'application sont \textbf{physiquement installés} (sur quels serveurs, ordinateurs, etc.)
+  
+  \vspace{0.5cm}
+  
+  \begin{block}{La différence avec les couches}
+    \begin{itemize}
+      \item \textbf{Couches (Layers)} = organisation logique du code (dans notre tête)
+      \item \textbf{Niveaux (Tiers)} = organisation physique des machines (dans la vraie vie)
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Architecture 1-Tier (Monolithique)}
+  
+  \textbf{Tout est sur la même machine~!}
+  
+  \vspace{0.3cm}
+  
+  \begin{itemize}
+    \item Interface utilisateur
+    \item Logique métier
+    \item Base de données
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Exemple~:} Une vieille application Windows qu'on installe sur son PC.
+  
+  \vspace{0.5cm}
+  
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Avantages~:}
+      \begin{itemize}
+        \item [\checkmark] Simple
+        \item [\checkmark] Rapide (tout est local)
+      \end{itemize}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \textbf{Inconvénients~:}
+      \begin{itemize}
+        \item [\texttimes] Si l'ordinateur plante, tout est perdu
+        \item [\texttimes] Impossible de partager
+        \item [\texttimes] Difficile à mettre à jour
+      \end{itemize}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Architecture 2-Tiers (Client-Serveur)}
+  
+  \textbf{Séparation entre le client et le serveur}
+  
+  \vspace{0.3cm}
+  
+  \begin{itemize}
+    \item [Ordinateur Client] Interface utilisateur $\rightarrow$ Logique métier
+    \item [Serveur] (affichage) $\leftarrow$ Base de données
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Exemple~:} Une application bancaire
+  
+  \vspace{0.5cm}
+  
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Avantages~:}
+      \begin{itemize}
+        \item [\checkmark] Données centralisées
+        \item [\checkmark] Plusieurs utilisateurs
+        \item [\checkmark] Plus sécurisé
+      \end{itemize}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \textbf{Inconvénients~:}
+      \begin{itemize}
+        \item [\texttimes] Si le serveur plante, tout le monde est bloqué
+        \item [\texttimes] Le serveur peut être surchargé
+      \end{itemize}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Architecture 3-Tiers (Classique Web)}
+  
+  \textbf{Séparation en 3~machines}
+  
+  \vspace{0.3cm}
+  
+  \begin{center}
+    [Client] → [Serveur Web] → [Serveur de Données] \\
+    Navigateur \quad Logique métier \quad Base de données
+  \end{center}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Exemple~:} Un site web e-commerce
+  
+  \vspace{0.5cm}
+  
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Avantages~:}
+      \begin{itemize}
+        \item [\checkmark] Chaque niveau peut être amélioré indépendamment
+        \item [\checkmark] Meilleure performance
+        \item [\checkmark] Plus sécurisé
+      \end{itemize}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \textbf{Inconvénients~:}
+      \begin{itemize}
+        \item [\texttimes] Plus complexe à installer et maintenir
+        \item [\texttimes] Plus cher (3~machines au lieu d'une)
+      \end{itemize}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Architecture N-Tiers (Moderne)}
+  
+  \textbf{Séparation en plein de machines}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Exemple~:} Netflix
+  \begin{itemize}
+    \item Votre TV/PC = l'interface
+    \item Des milliers de serveurs web répartis dans le monde
+    \item Des serveurs de cache (pour que la vidéo soit rapide)
+    \item Des bases de données énormes
+  \end{itemize}
+  
+  \vspace{0.5cm}
+  
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Avantages~:}
+      \begin{itemize}
+        \item [\checkmark] Très performant
+        \item [\checkmark] Très disponible
+        \item [\checkmark] Scalable
+      \end{itemize}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \textbf{Inconvénients~:}
+      \begin{itemize}
+        \item [\texttimes] Très complexe
+        \item [\texttimes] Très cher
+        \item [\texttimes] Nécessite des experts
+      \end{itemize}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Relation entre Couches et Niveaux}
+  
+  \begin{alertblock}{Important à comprendre}
+    \begin{itemize}
+      \item Les \textbf{couches} peuvent être sur le \textbf{même niveau} (même machine)
+      \item Ou les \textbf{couches} peuvent être sur des \textbf{niveaux différents} (machines différentes)
+    \end{itemize}
+  \end{alertblock}
+  
+  \vspace{0.5cm}
+  
+  \textbf{Exemple 1~:} Monolithique
+  \begin{itemize}
+    \item Toutes les couches sur 1~seul niveau (1~machine)
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Exemple 2~:} Architecture 3-Tiers typique
+  \begin{itemize}
+    \item Niveau 1~(Client) = Couche Présentation
+    \item Niveau 2~(Serveur Web) = Couches Contrôleur + Logique Métier + Services
+    \item Niveau 3~(Serveur BD) = Couche Persistance + Base de Données
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Tableau Comparatif}
+  
+  \begin{center}
+    \small
+    \begin{tabular}{|l|l|l|}
+      \hline
+      \textbf{Aspect} & \textbf{Couches (Layers)} & \textbf{Niveaux (Tiers)} \\
+      \hline
+      \textbf{Nature} & Logique / Conceptuelle & Physique / Matérielle \\
+      \hline
+      \textbf{Question} & Comment organiser le code~? & Où installer les composants~? \\
+      \hline
+      \textbf{Exemple} & Couche Présentation & Serveur Web \\
+      \hline
+      \textbf{Communication} & Verticale (haut en bas) & Horizontale (réseau) \\
+      \hline
+      \textbf{But} & Organiser le code & Distribuer la charge \\
+      \hline
+      \textbf{Diagramme UML} & Diagramme de packages & Diagramme de déploiement \\
+      \hline
+    \end{tabular}
+  \end{center}
+
+\end{frame}

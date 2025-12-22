@@ -1,0 +1,447 @@
+% Section 6 : Les Différents Types d'Architectures
+
+\section{Les Différents Types d'Architectures}
+
+% =====================================================
+\begin{frame}{Introduction}
+  
+  Il existe de nombreux \textbf{styles d'architecture logicielle}. Chacun a ses avantages et ses inconvénients.
+  
+  \vspace{0.5cm}
+  
+  \begin{block}{C'est comme les styles de maison}
+    \begin{itemize}
+      \item Maison individuelle
+      \item Appartement
+      \item Immeuble
+      \item Château
+    \end{itemize}
+    
+    \vspace{0.2cm}
+    
+    \alert{Chaque style est adapté à des besoins différents~!}
+  \end{block}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Architecture Monolithique Traditionnelle}
+  
+  \textbf{C'est quoi~?} Une application où \textbf{tout est dans un seul gros bloc}, un seul programme.
+  
+  \vspace{0.3cm}
+  
+  \textbf{Caractéristiques~:}
+  \begin{itemize}
+    \item Un seul code source
+    \item Un seul exécutable
+    \item Un seul déploiement
+    \item Tout est fortement couplé
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Avantages~:}
+      \begin{itemize}
+        \item [\checkmark] Simple à développer
+        \item [\checkmark] Simple à déployer
+        \item [\checkmark] Rapide
+        \item [\checkmark] Facile à tester
+      \end{itemize}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \textbf{Inconvénients~:}
+      \begin{itemize}
+        \item [\texttimes] Code spaghetti
+        \item [\texttimes] Difficile à comprendre
+        \item [\texttimes] Difficile à modifier
+        \item [\texttimes] Impossible de scaler
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Quand l'utiliser~?} Petite application, équipe réduite, prototype
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Architecture Monolithique Modulaire}
+  
+  \textbf{C'est quoi~?} Comme le monolithique, mais \textbf{bien organisé en modules indépendants}.
+  
+  \vspace{0.3cm}
+  
+  \begin{block}{Analogie}
+    Un immeuble avec plusieurs appartements~: tout est dans le même bâtiment, mais chaque appartement est indépendant.
+  \end{block}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Caractéristiques~:}
+  \begin{itemize}
+    \item Un seul déploiement (comme le monolithique)
+    \item Mais divisé en modules avec frontières claires
+    \item Faible couplage entre modules
+    \item Chaque module a sa responsabilité
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Avantages~:} Bien organisé, facile à comprendre, facile à tester, équipes autonomes
+  
+  \vspace{0.3cm}
+  
+  \textbf{Quand l'utiliser~?} Application moyenne à grande, équipe moyenne, migration vers microservices
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Architecture Client-Serveur}
+  
+  \textbf{C'est quoi~?} L'application est divisée en deux parties~:
+  
+  \begin{itemize}
+    \item Le \textbf{Client}~: l'interface utilisateur
+    \item Le \textbf{Serveur}~: la logique et les données
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \begin{block}{Analogie}
+    Un restaurant~:
+    \begin{itemize}
+      \item Le client = vous, à votre table
+      \item Le serveur (de restaurant) = prend vos commandes et les apporte
+      \item La cuisine = prépare les plats
+    \end{itemize}
+  \end{block}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Avantages~:} Données centralisées, plusieurs clients, mise à jour facile, sécurité
+  
+  \vspace{0.3cm}
+  
+  \textbf{Inconvénients~:} Dépendance réseau, serveur = point unique de défaillance
+  
+  \vspace{0.3cm}
+  
+  \textbf{Quand l'utiliser~?} Applications d'entreprise (ERP, CRM), jeux en réseau, applications bancaires
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Architecture N-Tiers}
+  
+  \textbf{C'est quoi~?} L'application est divisée en \textbf{plusieurs niveaux physiques}, chacun sur des machines différentes.
+  
+  \vspace{0.3cm}
+  
+  \textbf{Architecture 3-Tiers classique~:}
+  
+  \begin{itemize}
+    \item \textbf{Niveau 1~: Présentation} (Navigateur Web)~: HTML/CSS/JS, Interface UI
+    \item \textbf{Niveau 2~: Application} (Serveur Web/API)~: Logique, Services, API REST
+    \item \textbf{Niveau 3~: Données} (Serveur BD)~: MySQL/PostgreSQL, Stockage
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Avantages~:} Scalabilité horizontale, indépendance, sécurité, spécialisation
+  
+  \vspace{0.3cm}
+  
+  \textbf{Inconvénients~:} Complexité, coût, latence
+  
+  \vspace{0.3cm}
+  
+  \textbf{Quand l'utiliser~?} Applications web, beaucoup d'utilisateurs, besoin de performance
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Architecture en Couches (Layered)}
+  
+  \textbf{C'est quoi~?} Organisation \textbf{logique} du code en couches empilées.
+  
+  \vspace{0.3cm}
+  
+  \begin{alertblock}{Différence avec N-Tiers}
+    \begin{itemize}
+      \item \textbf{N-Tiers} = physique (machines différentes)
+      \item \textbf{En Couches} = logique (dans le code)
+    \end{itemize}
+  \end{alertblock}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Couches typiques~:}
+  \begin{enumerate}
+    \item Couche Présentation (Controllers, UI)
+    \item Couche Application (Use Cases, Workflows)
+    \item Couche Métier / Domain (Logique métier, Entities)
+    \item Couche Services (Services externes, APIs)
+    \item Couche Persistance (Repository, DAO)
+  \end{enumerate}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Quand l'utiliser~?} La plupart des applications, combiné avec d'autres patterns
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Architecture Microservices (1/2)}
+  
+  \textbf{C'est quoi~?} L'application est \textbf{découpée en plein de petits services indépendants}.
+  
+  \vspace{0.3cm}
+  
+  Chaque service~:
+  \begin{itemize}
+    \item Fait \textbf{une seule chose}
+    \item A sa \textbf{propre base de données}
+    \item Peut être \textbf{déployé indépendamment}
+    \item Communique avec les autres via \textbf{des APIs}
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \begin{block}{Analogie}
+    Une ville avec plein de commerces indépendants~:
+    \begin{itemize}
+      \item La boulangerie vend du pain
+      \item La pharmacie vend des médicaments
+      \item La banque gère l'argent
+    \end{itemize}
+    
+    Chaque commerce est indépendant, mais ils travaillent ensemble~!
+  \end{block}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Architecture Microservices (2/2)}
+  
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Avantages~:}
+      \begin{itemize}
+        \item [\checkmark] Scalabilité
+        \item [\checkmark] Flexibilité technologique
+        \item [\checkmark] Équipes autonomes
+        \item [\checkmark] Déploiement indépendant
+        \item [\checkmark] Résilience
+        \item [\checkmark] Innovation
+      \end{itemize}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \textbf{Inconvénients~:}
+      \begin{itemize}
+        \item [\texttimes] Très complexe
+        \item [\texttimes] Coût élevé
+        \item [\texttimes] Latence réseau
+        \item [\texttimes] Cohérence des données
+        \item [\texttimes] Tests complexes
+        \item [\texttimes] Monitoring sophistiqué
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  
+  \vspace{0.5cm}
+  
+  \textbf{Quand l'utiliser~?} Grandes applications (Netflix, Amazon, Uber), grandes équipes (50+ développeurs), millions d'utilisateurs
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Architecture Orientée Services (SOA)}
+  
+  \textbf{C'est quoi~?} Comme les microservices, mais \textbf{à l'échelle de l'entreprise}, avec un \textbf{bus de services} central.
+  
+  \vspace{0.3cm}
+  
+  \begin{block}{Différence avec Microservices}
+    \begin{itemize}
+      \item \textbf{SOA}~: Communication via un \textbf{ESB} (Enterprise Service Bus) - un bus central
+      \item \textbf{Microservices}~: Communication directe entre services
+    \end{itemize}
+  \end{block}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Avantages~:} Réutilisation, interopérabilité, centralisation, standards
+  
+  \vspace{0.3cm}
+  
+  \textbf{Inconvénients~:} ESB = point unique de défaillance, complexe, lourd, coût
+  
+  \vspace{0.3cm}
+  
+  \textbf{Quand l'utiliser~?} Grandes entreprises avec beaucoup de systèmes existants, besoin d'intégration, environnements legacy
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Architecture Hexagonale (Ports \& Adapters)}
+  
+  \textbf{C'est quoi~?} Mettre la \textbf{logique métier au centre}, et l'isoler de tout le reste (BD, interfaces, APIs externes).
+  
+  \vspace{0.3cm}
+  
+  \textbf{Le principe~:}
+  \begin{itemize}
+    \item Au \textbf{centre}~: le domaine métier (la vraie valeur de l'application)
+    \item Autour~: des \textbf{ports} (interfaces)
+    \item Encore autour~: des \textbf{adaptateurs} (implémentations concrètes)
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \begin{block}{Analogie}
+    Une prise électrique~:
+    \begin{itemize}
+      \item Le \textbf{port} = la prise dans le mur (interface standardisée)
+      \item Les \textbf{adaptateurs} = les différents chargeurs qu'on peut brancher
+      \item Le \textbf{centre} (métier) = l'appareil qu'on veut charger
+    \end{itemize}
+  \end{block}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Quand l'utiliser~?} Applications avec logique métier complexe, besoin de testabilité maximale, Domain-Driven Design (DDD)
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Architecture Event-Driven (Orientée Événements)}
+  
+  \textbf{C'est quoi~?} Les composants communiquent en s'envoyant des \textbf{événements} (messages).
+  
+  \vspace{0.3cm}
+  
+  \textbf{Principe~:}
+  \begin{itemize}
+    \item Quelque chose se passe → Un événement est émis
+    \item Les composants intéressés \textbf{réagissent} à l'événement
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \begin{block}{Analogie}
+    Un système d'alarme~:
+    \begin{itemize}
+      \item \textbf{Événement}~: \og{}Quelqu'un a ouvert la porte\fg{}
+      \item \textbf{Réactions}~: La sirène sonne, SMS envoyé, police appelée, vidéo enregistrée
+    \end{itemize}
+    
+    Tous ces systèmes réagissent à l'événement, mais ils ne se connaissent pas entre eux~!
+  \end{block}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Avantages~:} Découplage total, scalabilité, asynchrone, résilience, flexibilité
+  
+  \vspace{0.3cm}
+  
+  \textbf{Quand l'utiliser~?} Systèmes temps réel, IoT, e-commerce, systèmes complexes
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Architecture MVC}
+  
+  \textbf{Les 3~composants~:}
+  
+  \begin{enumerate}
+    \item \textbf{MODÈLE}~: Les données, la logique métier, les règles de validation
+    \item \textbf{VUE}~: L'interface utilisateur, l'affichage, les formulaires
+    \item \textbf{CONTRÔLEUR}~: Reçoit les demandes, interroge le modèle, choisit la vue
+  \end{enumerate}
+  
+  \vspace{0.5cm}
+  
+  \textbf{Les 2~Variantes~:}
+  
+  \begin{itemize}
+    \item \textbf{MVC Push (Action-Based)}~: Le contrôleur \textbf{pousse} les données vers la vue (ex~: Spring MVC)
+    \item \textbf{MVC Pull (Component-Based)}~: La vue \textbf{tire} les données du modèle (ex~: JSF)
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Quand l'utiliser~?} Applications web traditionnelles, applications desktop, frameworks (Spring MVC, Django)
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Architecture Domain-Driven Design (DDD)}
+  
+  \textbf{C'est quoi~?} Une approche qui met le \textbf{domaine métier} au cœur de l'architecture.
+  
+  \vspace{0.3cm}
+  
+  \textbf{Concept clé~: Bounded Context}
+  \begin{itemize}
+    \item Un \og{}Bounded Context\fg{} = un \textbf{contexte métier} bien délimité
+    \item Chaque contexte a son propre \textbf{modèle} et son propre \textbf{langage}
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Concepts DDD~:}
+  \begin{enumerate}
+    \item \textbf{Entities}~: Objets avec identité unique (ex~: Client avec ID)
+    \item \textbf{Value Objects}~: Objets sans identité (ex~: Adresse)
+    \item \textbf{Aggregates}~: Groupe d'objets traités comme une unité (ex~: Commande + Lignes)
+    \item \textbf{Repositories}~: Accès aux données (ex~: ClientRepository)
+    \item \textbf{Services}~: Opérations qui ne rentrent pas dans les entités (ex~: CalculateurDePrix)
+  \end{enumerate}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Quand l'utiliser~?} Domaine métier complexe, grandes applications d'entreprise, collaboration avec experts métier
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Tableau Comparatif des Architectures}
+  
+  \begin{center}
+    \tiny
+    \begin{tabular}{|l|c|c|c|c|p{2.5cm}|}
+      \hline
+      \textbf{Architecture} & \textbf{Complex.} & \textbf{Scala.} & \textbf{Maint.} & \textbf{Coût} & \textbf{Quand l'utiliser~?} \\
+      \hline
+      Monolithique & Faible & Faible & Faible & Faible & Petites applis \\
+      \hline
+      Monolith. Modulaire & Moyenne & Moyenne & Bonne & Faible & Applis moyennes \\
+      \hline
+      Client-Serveur & Moyenne & Faible & Moyenne & Moyen & Apps entreprise \\
+      \hline
+      N-Tiers & Moyenne & Bonne & Moyenne & Moyen & Sites web \\
+      \hline
+      En Couches & Faible & Moyenne & Bonne & Faible & Plupart applis \\
+      \hline
+      Microservices & Élevée & Excell. & Moyenne & Élevé & Grandes applis \\
+      \hline
+      SOA & Élevée & Bonne & Faible & Élevé & Grandes entr. \\
+      \hline
+      Hexagonale & Moyenne & Moyenne & Excell. & Moyen & Apps complexes \\
+      \hline
+      Event-Driven & Élevée & Excell. & Moyenne & Moyen & Temps réel, IoT \\
+      \hline
+      MVC & Faible & Moyenne & Bonne & Faible & Apps web class. \\
+      \hline
+      DDD & Élevée & Moyenne & Bonne & Élevé & Domaine complexe \\
+      \hline
+    \end{tabular}
+  \end{center}
+
+\end{frame}

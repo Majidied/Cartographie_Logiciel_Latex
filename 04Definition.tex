@@ -1,0 +1,157 @@
+% Section 2 : Définition de l'Architecture Logicielle
+
+\section{Définition de l'Architecture Logicielle}
+
+% =====================================================
+\begin{frame}{Définition Simple}
+  
+  \begin{block}{L'Architecture Logicielle, c'est~:}
+    \centering
+    \textbf{\Large La façon dont on organise et on structure le code d'une application pour qu'elle fonctionne bien}
+  \end{block}
+  
+  \vspace{0.5cm}
+  
+  C'est comme un plan de construction qui explique~:
+  
+  \begin{itemize}
+    \item Comment découper l'application en morceaux
+    \item Comment ces morceaux communiquent entre eux
+    \item Quelles règles ils doivent respecter
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Les Deux Rôles de l'Architecture Logicielle}
+  
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Rôle n°1~: Structurer}
+        Elle organise les solutions \textbf{les mieux adaptées} pour répondre aux besoins de l'utilisateur.
+        
+        \vspace{0.3cm}
+        
+        \textbf{Exemple~:} Pour une application e-commerce~:
+        \begin{itemize}
+          \item Où mettre le code du panier~?
+          \item Où mettre le calcul des prix~?
+          \item Où mettre l'affichage~?
+        \end{itemize}
+      \end{block}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Rôle n°2~: Décomposer}
+        Elle découpe l'application en petits morceaux faciles à comprendre et à modifier.
+        
+        \vspace{0.3cm}
+        
+        \textbf{Analogie~:} Comme un puzzle géant~!
+        \begin{itemize}
+          \item Chaque pièce = un morceau de code
+          \item L'architecture = les règles d'assemblage
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Les 5~Concepts Clés de Décomposition (1/3)}
+  
+  \textbf{1. Les Couches (Layers)}
+  
+  \begin{itemize}
+    \item Comme un gâteau à étages
+    \item Chaque étage = une couche avec un rôle précis
+    \item \textbf{Exemple~:} Couche interface → Couche logique → Couche données
+  \end{itemize}
+  
+  \vspace{0.5cm}
+  
+  \textbf{2. Les Modules}
+  
+  \begin{itemize}
+    \item Un gros dossier qui regroupe des fonctionnalités liées
+    \item \textbf{Exemple~:} Module \og{}Gestion des Clients\fg{}, Module \og{}Gestion des Commandes\fg{}
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Les 5~Concepts Clés de Décomposition (2/3)}
+  
+  \textbf{3. Les Composants}
+  
+  \begin{itemize}
+    \item Un morceau de code réutilisable, comme une brique de LEGO
+    \item \textbf{Exemple~:} Un bouton \og{}Valider\fg{}, un formulaire de connexion
+  \end{itemize}
+  
+  \vspace{0.5cm}
+  
+  \textbf{4. Les Design Patterns}
+  
+  \begin{itemize}
+    \item Une recette de cuisine pour résoudre un problème courant
+    \item \textbf{Exemple~:} 
+    \begin{itemize}
+      \item Pattern \og{}Singleton\fg{}~: une seule connexion à la BD
+      \item Pattern \og{}Observer\fg{}~: prévenir tous les intéressés quand quelque chose change
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Les 5~Concepts Clés de Décomposition (3/3)}
+  
+  \textbf{5. Les Frameworks}
+  
+  \begin{itemize}
+    \item Une boîte à outils toute prête avec plein de fonctions déjà codées
+    \item \textbf{Exemples~:}
+    \begin{itemize}
+      \item React (pour faire des interfaces web)
+      \item Spring (pour faire des applications Java)
+      \item Django (pour faire des applications Python)
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Pourquoi C'est Important~?}
+  
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Une bonne architecture permet~:}
+        \begin{itemize}
+          \item [\checkmark] \textbf{Comprendre} le code facilement
+          \item [\checkmark] \textbf{Modifier} sans tout casser
+          \item [\checkmark] \textbf{Réutiliser} des morceaux
+          \item [\checkmark] \textbf{Travailler en équipe}
+          \item [\checkmark] \textbf{Éviter les bugs}
+          \item [\checkmark] \textbf{Améliorer les performances}
+        \end{itemize}
+      \end{block}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \begin{alertblock}{Une mauvaise architecture}
+        = un \textbf{code spaghetti}
+        
+        \vspace{0.3cm}
+        
+        \begin{itemize}
+          \item [\texttimes] Tout est mélangé
+          \item [\texttimes] Impossible de s'y retrouver
+          \item [\texttimes] Ajouter une fonctionnalité = tout casse~!
+        \end{itemize}
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+
+\end{frame}

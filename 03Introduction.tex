@@ -1,0 +1,118 @@
+% Section 1 : Introduction - Entrer dans la Boîte Blanche
+
+\section{Introduction~: Entrer dans la Boîte Blanche}
+
+% =====================================================
+\begin{frame}{Pourquoi cette présentation~?}
+  
+  \textbf{Imaginez que vous avez construit une maison.} Jusqu'à maintenant, nous avons parlé de~:
+  
+  \begin{itemize}
+    \item \textbf{L'architecture applicative}~: c'est comme le plan des pièces de votre maison (cuisine, salon, chambres...)
+    \item \textbf{L'architecture technique}~: ce sont les matériaux (briques, béton, tuyaux, électricité...)
+  \end{itemize}
+  
+  \vspace{0.5cm}
+  
+  \begin{alertblock}{Maintenant}
+    Nous allons découvrir \textbf{ce qui se passe À L'INTÉRIEUR de chaque pièce}~!
+  \end{alertblock}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Qu'est-ce que la \og{}Boîte Blanche\fg{}~?}
+  
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Boîte Noire}
+        \begin{itemize}
+          \item Vue de l'extérieur
+          \item On ne voit pas comment ça fonctionne
+          \item On voit juste que ça marche
+        \end{itemize}
+      \end{block}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \begin{alertblock}{Boîte Blanche}
+        \begin{itemize}
+          \item Vue de l'intérieur
+          \item On découvre les composants
+          \item On comprend l'organisation
+          \item On voit les communications
+        \end{itemize}
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Analogie}~: C'est comme ouvrir le capot d'une voiture pour voir le moteur~!
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Le Couplage Fort entre Architecture Logicielle et Technique}
+  
+  \begin{alertblock}{Important}
+    Les architectures logicielles et techniques sont en \textbf{\og{}couplage fort\fg{}}.
+  \end{alertblock}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Qu'est-ce que ça veut dire~?}
+  
+  \begin{itemize}
+    \item Imaginez deux danseurs qui dansent un tango~:
+    \begin{itemize}
+      \item Si l'un fait un pas à gauche, l'autre \alert{DOIT suivre}
+      \item Les choix de l'un influencent directement l'autre
+      \item Ils sont \textbf{couplés}~: ils doivent bouger ensemble~!
+    \end{itemize}
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{De la même façon}~:
+  \begin{itemize}
+    \item Les choix pour l'architecture \textbf{logicielle} (comment organiser le code)
+    \item Influencent directement les choix pour l'architecture \textbf{technique} (serveurs, base de données...)
+    \item \alert{Et vice-versa~!}
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Les 3~Contraintes Essentielles}
+  
+  En plus de faire fonctionner l'application, l'architecture logicielle doit garantir~:
+  
+  \vspace{0.5cm}
+  
+  \begin{enumerate}
+    \item \textbf{\textcolor{IFSPAccent}{Sécurité}}
+    \begin{itemize}
+      \item Comme mettre une serrure sur votre porte
+      \item Empêcher les méchants d'entrer
+      \item Protéger vos données
+    \end{itemize}
+    
+    \vspace{0.3cm}
+    
+    \item \textbf{\textcolor{IFSPAccent}{Disponibilité}}
+    \begin{itemize}
+      \item Comme avoir de l'électricité 24h/24
+      \item L'application doit fonctionner tout le temps
+    \end{itemize}
+    
+    \vspace{0.3cm}
+    
+    \item \textbf{\textcolor{IFSPAccent}{Performance}}
+    \begin{itemize}
+      \item Comme avoir une voiture rapide
+      \item Répondre vite, même avec beaucoup d'utilisateurs
+    \end{itemize}
+  \end{enumerate}
+
+\end{frame}

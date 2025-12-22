@@ -1,0 +1,363 @@
+% Section 7 : Cartographie de l'Architecture Logicielle
+
+\section{Cartographie de l'Architecture Logicielle}
+
+% =====================================================
+\begin{frame}{Pourquoi Cartographier~?}
+  
+  \textbf{Cartographier une architecture} = créer des \textbf{plans} et des \textbf{schémas} pour~:
+  
+  \begin{itemize}
+    \item \textbf{Comprendre} l'existant
+    \item \textbf{Communiquer} avec les équipes
+    \item \textbf{Documenter} pour le futur
+    \item \textbf{Décider} des évolutions
+  \end{itemize}
+  
+  \vspace{0.5cm}
+  
+  \begin{block}{Analogie}
+    Comme un plan de ville~:
+    \begin{itemize}
+      \item Pour comprendre où sont les rues
+      \item Pour expliquer un trajet
+      \item Pour planifier de nouvelles routes
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Les 3~Vues d'Architecture (selon UML)}
+  
+  UML (Unified Modeling Language) propose 3~vues pour cartographier une architecture~:
+  
+  \vspace{0.5cm}
+  
+  \begin{enumerate}
+    \item \textbf{VUE LOGIQUE (Logical View)}
+    \begin{itemize}
+      \item \textbf{But}~: Montrer l'organisation \textbf{conceptuelle} du système
+      \item \textbf{Diagramme UML}~: Diagramme de Packages
+    \end{itemize}
+    
+    \vspace{0.3cm}
+    
+    \item \textbf{VUE D'IMPLÉMENTATION (Implementation View)}
+    \begin{itemize}
+      \item \textbf{But}~: Montrer les \textbf{composants physiques} et leurs connexions
+      \item \textbf{Diagramme UML}~: Diagramme de Composants
+    \end{itemize}
+    
+    \vspace{0.3cm}
+    
+    \item \textbf{VUE DE DÉPLOIEMENT (Deployment View)}
+    \begin{itemize}
+      \item \textbf{But}~: Montrer où les composants sont \textbf{physiquement installés}
+      \item \textbf{Diagramme UML}~: Diagramme de Déploiement
+    \end{itemize}
+  \end{enumerate}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Diagramme de Packages (Vue Logique)}
+  
+  \textbf{C'est quoi~?} Un package = un dossier qui regroupe des éléments liés.
+  
+  \vspace{0.3cm}
+  
+  \textbf{Exemple~: Application E-commerce}
+  
+  \begin{itemize}
+    \item Package \textbf{Clients}~: Service + Repository
+    \item Package \textbf{Commandes}~: Service + Repository (dépend de Clients et Produits)
+    \item Package \textbf{Produits}~: Service + Repository
+    \item Package \textbf{Paiements}~: Service + Repository (dépend de Clients)
+    \item Package \textbf{Infrastructure}~: Database, Email, Logging
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \begin{alertblock}{Signification}
+    \begin{itemize}
+      \item Le package \og{}Commandes\fg{} dépend de \og{}Clients\fg{} (une commande a un client)
+      \item Le package \og{}Commandes\fg{} dépend de \og{}Produits\fg{} (une commande contient des produits)
+      \item Tous dépendent de \og{}Infrastructure\fg{} (pour accéder à la BD, envoyer des emails...)
+    \end{itemize}
+  \end{alertblock}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Diagramme de Composants (Vue d'Implémentation)}
+  
+  \textbf{Exemple~: Architecture Web 3-Tiers}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Couche Présentation~:}
+  \begin{itemize}
+    \item Frontend (React)~: Components + Pages
+  \end{itemize}
+  
+  \vspace{0.2cm}
+  
+  \textbf{Couche Application~:} (via HTTP/REST)
+  \begin{itemize}
+    \item Backend API (Spring Boot)~: Controllers + Services
+  \end{itemize}
+  
+  \vspace{0.2cm}
+  
+  \textbf{Couche Données~:} (via JDBC)
+  \begin{itemize}
+    \item Database (PostgreSQL)~: Tables + Views
+  \end{itemize}
+  
+  \vspace{0.2cm}
+  
+  \textbf{Composants externes~:}
+  \begin{itemize}
+    \item Stripe API (Paiements)
+    \item SendGrid API (Emails)
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Diagramme de Déploiement (Vue Physique)}
+  
+  \textbf{Exemple~: Déploiement Cloud (AWS)}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Internet} → \textbf{Load Balancer (AWS ELB)}
+  
+  \vspace{0.2cm}
+  
+  \textbf{3~Serveurs Web~:}
+  \begin{itemize}
+    \item EC2 Instance 1, 2, 3~: app.jar (Spring Boot)
+  \end{itemize}
+  
+  \vspace{0.2cm}
+  
+  \textbf{Base de données~:}
+  \begin{itemize}
+    \item RDS Database (PostgreSQL)~: ecommerce\_db
+  \end{itemize}
+  
+  \vspace{0.2cm}
+  
+  \textbf{Autres nœuds~:}
+  \begin{itemize}
+    \item S3 Bucket (Stockage de fichiers)
+    \item CloudFront (CDN pour les images)
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Diagrammes Complémentaires}
+  
+  \textbf{Diagramme de Classes} (pour la vue détaillée)
+  
+  \begin{itemize}
+    \item Pour zoomer dans un module et voir les classes
+    \item \textbf{Exemple}~: Classe \texttt{Commande} avec attributs (id, date, client, statut) et méthodes (calculerTotal, valider, annuler)
+    \item Relation avec classe \texttt{LigneCommande}
+  \end{itemize}
+  
+  \vspace{0.5cm}
+  
+  \textbf{Diagramme de Séquence} (pour les interactions)
+  
+  \begin{itemize}
+    \item Pour montrer comment les composants interagissent dans le temps
+    \item \textbf{Exemple}~: Processus \og{}Passer une commande\fg{}~:
+    \begin{itemize}
+      \item Utilisateur → Interface → Contrôleur → ServiceCommande → Repository → BD
+      \item Puis retour avec confirmation
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Outils de Cartographie}
+  
+  \textbf{Outils de Modélisation UML~:}
+  
+  \begin{itemize}
+    \item Enterprise Architect (professionnel, payant)
+    \item Visual Paradigm (complet, payant)
+    \item StarUML (gratuit, open source)
+    \item PlantUML (code as diagram, gratuit)
+    \item Draw.io / diagrams.net (gratuit, en ligne)
+    \item Lucidchart (en ligne, freemium)
+  \end{itemize}
+  
+  \vspace{0.5cm}
+  
+  \textbf{Outils spécialisés Architecture~:}
+  
+  \begin{itemize}
+    \item Archimate (pour l'architecture d'entreprise)
+    \item C4 Model (pour l'architecture logicielle moderne)
+    \item Structurizr (architecture as code)
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Le Modèle C4 (Moderne et Simplifié)}
+  
+  Le \textbf{modèle C4} est une approche moderne pour cartographier les architectures.
+  
+  \vspace{0.5cm}
+  
+  \textbf{Les 4~Niveaux du C4~:}
+  
+  \begin{enumerate}
+    \item \textbf{Context (Contexte)}~: Vue d'ensemble - qui utilise le système et avec quoi il interagit
+    
+    \item \textbf{Containers (Conteneurs)}~: Les applications et les bases de données
+    
+    \item \textbf{Components (Composants)}~: Les modules à l'intérieur d'un conteneur
+    
+    \item \textbf{Code}~: Les classes et leurs relations (diagrammes de classes UML)
+  \end{enumerate}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Modèle C4~: Niveau 1~- Context}
+  
+  \textbf{Vue d'ensemble~:} qui utilise le système et avec quoi il interagit.
+  
+  \vspace{0.5cm}
+  
+  \textbf{Exemple E-commerce~:}
+  
+  \begin{center}
+    Client \\
+    ↓ \\
+    \alert{E-commerce App} \\
+    ↓ \qquad ↓ \\
+    Stripe API \qquad SendGrid API
+  \end{center}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Modèle C4~: Niveau 2~- Containers}
+  
+  \textbf{Les applications et les bases de données}
+  
+  \vspace{0.5cm}
+  
+  \textbf{Exemple E-commerce~:}
+  
+  \begin{center}
+    React App (Frontend) \\
+    ↓ HTTP \\
+    Spring Boot API (Backend) \\
+    ↓ JDBC \\
+    PostgreSQL DB
+  \end{center}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Modèle C4~: Niveau 3~- Components}
+  
+  \textbf{Les modules à l'intérieur d'un conteneur}
+  
+  \vspace{0.5cm}
+  
+  \textbf{Exemple~: Spring Boot API}
+  
+  \begin{center}
+    Controllers \\
+    ↓ \\
+    Services \\
+    ↓ \\
+    Repositories
+  \end{center}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Modèle C4~: Niveau 4~- Code}
+  
+  \textbf{Les classes et leurs relations}
+  
+  \vspace{0.5cm}
+  
+  C'est le niveau le plus détaillé~: on utilise les diagrammes de classes UML classiques.
+  
+  \vspace{0.3cm}
+  
+  \textbf{Exemple~:}
+  \begin{itemize}
+    \item Classe \texttt{CommandeController}
+    \item Classe \texttt{CommandeService}
+    \item Classe \texttt{CommandeRepository}
+    \item Classe \texttt{Commande}
+    \item Classe \texttt{LigneCommande}
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Exemple Complet~: Cartographie E-commerce}
+  
+  \textbf{Étape 1~: Vue Logique (Packages)}
+  
+  \begin{itemize}
+    \item \texttt{com.shop.customers}~: Customer, CustomerService, CustomerRepository
+    \item \texttt{com.shop.products}~: Product, ProductService, ProductRepository
+    \item \texttt{com.shop.orders}~: Order, OrderLine, OrderService, OrderRepository
+    \item \texttt{com.shop.payments}~: Payment, PaymentService, StripeAdapter
+    \item \texttt{com.shop.infrastructure}~: database, email, logging
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Étape 2~: Vue d'Implémentation (Composants)}
+  
+  \begin{itemize}
+    \item shop-frontend.war (Application React)
+    \item shop-backend.jar (API Spring Boot)
+    \item shop-database (PostgreSQL)
+    \item Composants externes~: Stripe API, SendGrid API, AWS S3
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Exemple Complet (suite)}
+  
+  \textbf{Étape 3~: Vue de Déploiement (Infrastructure)}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Production~:}
+  \begin{itemize}
+    \item 3~serveurs web (EC2)
+    \item 1~load balancer (AWS ELB)
+    \item 1~serveur base de données (RDS PostgreSQL)
+    \item 1~bucket S3 (images)
+    \item 1~CloudFront (CDN)
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Développement~:}
+  \begin{itemize}
+    \item 1~laptop développeur
+    \item 1~base de données locale (Docker)
+  \end{itemize}
+
+\end{frame}

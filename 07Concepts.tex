@@ -1,0 +1,442 @@
+% Section 5 : Les Concepts de l'Architecture Logicielle
+
+\section{Les Concepts de l'Architecture Logicielle}
+
+% =====================================================
+\begin{frame}{Les Principes Fondamentaux}
+  
+  Pour créer une bonne architecture, il faut respecter certains principes.
+  
+  \vspace{0.3cm}
+  
+  \begin{alertblock}{Pensez à eux comme les \textbf{règles d'or} de l'architecture logicielle~!}
+  \end{alertblock}
+  
+  \vspace{0.5cm}
+  
+  Nous allons voir~:
+  
+  \begin{enumerate}
+    \item L'Abstraction
+    \item L'Encapsulation
+    \item La Séparation des Responsabilités
+    \item Le Faible Couplage
+    \item La Forte Cohésion
+    \item La Modularité
+    \item L'Extensibilité
+    \item La Réutilisabilité
+  \end{enumerate}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Principe 1~: L'Abstraction}
+  
+  \textbf{C'est quoi~?} Cacher les détails compliqués et ne montrer que l'essentiel.
+  
+  \vspace{0.3cm}
+  
+  \begin{block}{Analogie}
+    Quand vous conduisez une voiture~:
+    \begin{itemize}
+      \item Vous appuyez sur l'accélérateur → la voiture avance
+      \item Vous ne savez pas comment le moteur fonctionne (et vous n'avez pas besoin de le savoir~!)
+    \end{itemize}
+  \end{block}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Dans le code~:}
+  
+  \begin{exampleblock}{Interface simple (abstraction)}
+    \texttt{envoyer\_email(destinataire, message)}
+    
+    \vspace{0.2cm}
+    
+    On ne voit pas les détails~: connexion SMTP, encodage, gestion des erreurs...
+  \end{exampleblock}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Pourquoi c'est important~?} Plus facile à utiliser, on peut changer l'implémentation, moins de bugs
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Principe 2~: L'Encapsulation}
+  
+  \textbf{C'est quoi~?} Mettre les données et les fonctions qui les manipulent dans une \og{}boîte fermée\fg{}.
+  
+  \vspace{0.3cm}
+  
+  \begin{block}{Analogie}
+    Une télécommande de TV~:
+    \begin{itemize}
+      \item À l'intérieur~: des circuits compliqués
+      \item À l'extérieur~: juste des boutons simples
+      \item Vous ne pouvez pas toucher directement les circuits (c'est protégé~!)
+    \end{itemize}
+  \end{block}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Dans le code~:}
+  
+  \begin{itemize}
+    \item Données PRIVÉES (protégées)~: \texttt{solde = 1000€}
+    \item Fonctions PUBLIQUES (accessibles)~: \texttt{deposer(montant)}, \texttt{retirer(montant)}
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Pourquoi c'est important~?} Les données sont protégées, on contrôle les modifications, impossible de mettre un solde négatif~!
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Principe 3~: La Séparation des Responsabilités}
+  
+  \textbf{C'est quoi~?} Chaque morceau de code doit avoir \textbf{une seule responsabilité} bien définie.
+  
+  \vspace{0.3cm}
+  
+  \begin{block}{Analogie}
+    Dans une cuisine de restaurant~:
+    \begin{itemize}
+      \item Le chef cuisine
+      \item Le serveur sert
+      \item Le plongeur fait la vaisselle
+      \item \alert{Chacun fait SON travail, pas celui des autres~!}
+    \end{itemize}
+  \end{block}
+  
+  \vspace{0.3cm}
+  
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{alertblock}{Mauvais exemple}
+        Une fonction qui~:
+        \begin{itemize}
+          \item Affiche à l'écran
+          \item Calcule le prix
+          \item Sauvegarde en BD
+          \item Envoie un email
+        \end{itemize}
+        [\texttimes] Fait TROP de choses~!
+      \end{alertblock}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{Bon exemple}
+        4~fonctions séparées~:
+        \begin{itemize}
+          \item \texttt{afficher\_progression()}
+          \item \texttt{calculer\_prix()}
+          \item \texttt{sauvegarder\_commande()}
+          \item \texttt{notifier\_client()}
+        \end{itemize}
+        [\checkmark] Une responsabilité chacune~!
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Principe 4~: Le Faible Couplage}
+  
+  \textbf{C'est quoi~?} Les morceaux de code doivent être \textbf{le moins dépendants possible} les uns des autres.
+  
+  \vspace{0.3cm}
+  
+  \begin{block}{Analogie}
+    \begin{itemize}
+      \item \textbf{Fort couplage}~: Des jumeaux siamois (si l'un bouge, l'autre doit bouger)
+      \item \textbf{Faible couplage}~: Deux amis (chacun peut faire sa vie de son côté)
+    \end{itemize}
+  \end{block}
+  
+  \vspace{0.3cm}
+  
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{alertblock}{Mauvais (fort couplage)}
+        Code qui appelle directement MySQL
+        
+        \vspace{0.2cm}
+        
+        [\texttimes] Si on change de BD, il faut tout changer~!
+      \end{alertblock}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{Bon (faible couplage)}
+        Code qui passe par une abstraction (Repository)
+        
+        \vspace{0.2cm}
+        
+        [\checkmark] On peut changer de BD facilement~!
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Principe 5~: La Forte Cohésion}
+  
+  \textbf{C'est quoi~?} Les éléments d'un même module doivent être \textbf{fortement liés} entre eux.
+  
+  \vspace{0.3cm}
+  
+  \begin{block}{Analogie}
+    Dans une boîte à outils~:
+    \begin{itemize}
+      \item \textbf{Forte cohésion}~: Toutes les clés ensemble, tous les tournevis ensemble
+      \item \textbf{Faible cohésion}~: Un marteau avec une brosse à dents et un livre de cuisine (ça n'a aucun sens~!)
+    \end{itemize}
+  \end{block}
+  
+  \vspace{0.3cm}
+  
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{Bon exemple}
+        Module GestionDesClients~:
+        \begin{itemize}
+          \item \texttt{creer\_client()}
+          \item \texttt{modifier\_client()}
+          \item \texttt{supprimer\_client()}
+          \item \texttt{trouver\_client()}
+        \end{itemize}
+        [\checkmark] Toutes les fonctions concernent les clients~!
+      \end{exampleblock}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \begin{alertblock}{Mauvais exemple}
+        Module Utilitaires~:
+        \begin{itemize}
+          \item \texttt{calculer\_prix()}
+          \item \texttt{envoyer\_email()}
+          \item \texttt{afficher\_menu()}
+          \item \texttt{convertir\_date()}
+        \end{itemize}
+        [\texttimes] Aucun lien entre elles~!
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Principes 6, 7 et 8}
+  
+  \textbf{6. La Modularité}
+  
+  \begin{itemize}
+    \item Diviser l'application en \textbf{modules indépendants}
+    \item Comme des pièces de LEGO~: on peut les assembler de différentes façons
+    \item Plus facile à tester, réutiliser, maintenir
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{7. L'Extensibilité (Open/Closed Principle)}
+  
+  \begin{itemize}
+    \item Le code doit être \textbf{ouvert} à l'extension (on peut ajouter des fonctionnalités)
+    \item Le code doit être \textbf{fermé} à la modification (on ne touche pas au code existant)
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{8. La Réutilisabilité}
+  
+  \begin{itemize}
+    \item Écrire du code qu'on peut \textbf{utiliser à plusieurs endroits}
+    \item Comme une recette de pâte à crêpes~: utilisable pour crêpes sucrées, salées, galettes...
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Les Patterns Architecturaux}
+  
+  \begin{block}{Définition}
+    Les patterns architecturaux sont des \textbf{modèles de solutions} pour des problèmes courants.
+  \end{block}
+  
+  \vspace{0.5cm}
+  
+  Nous allons voir~:
+  
+  \begin{enumerate}
+    \item Pattern MVC (Modèle-Vue-Contrôleur)
+    \item Pattern Repository
+    \item Pattern Singleton
+    \item Pattern Observer
+  \end{enumerate}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Pattern MVC (Modèle-Vue-Contrôleur)}
+  
+  \textbf{Le Problème~:} Comment séparer l'affichage de la logique métier~?
+  
+  \vspace{0.3cm}
+  
+  \textbf{La Solution MVC~:}
+  
+  \begin{center}
+    [VUE] $\leftrightarrow$ [CONTRÔLEUR] $\leftrightarrow$ [MODÈLE]
+  \end{center}
+  
+  \vspace{0.3cm}
+  
+  \begin{itemize}
+    \item \textbf{MODÈLE} = Les données et la logique métier (ex~: classe \texttt{Produit})
+    \item \textbf{VUE} = L'affichage (ex~: page HTML qui affiche les produits)
+    \item \textbf{CONTRÔLEUR} = Le chef d'orchestre qui coordonne
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Pourquoi c'est bien~?}
+  \begin{itemize}
+    \item [\checkmark] On peut changer l'affichage sans toucher à la logique
+    \item [\checkmark] On peut changer la logique sans toucher à l'affichage
+    \item [\checkmark] Facile à tester
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Pattern Repository}
+  
+  \textbf{Le Problème~:} Comment accéder aux données sans dépendre de la base de données~?
+  
+  \vspace{0.3cm}
+  
+  \textbf{La Solution~:} Créer une \og{}couche intermédiaire\fg{} qui fait le lien.
+  
+  \vspace{0.3cm}
+  
+  \begin{center}
+    [Code Métier] → [Repository] → [Base de Données]
+  \end{center}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Exemple~:}
+  
+  \begin{itemize}
+    \item Interface~: \texttt{ClientRepository} avec \texttt{trouver\_par\_id()}, \texttt{sauvegarder()}, \texttt{supprimer()}
+    \item Implémentation~: \texttt{ClientRepositoryMySQL} avec code SQL spécifique
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Pourquoi c'est bien~?}
+  \begin{itemize}
+    \item [\checkmark] Le code métier ne connaît pas la BD utilisée
+    \item [\checkmark] On peut changer de BD (MySQL → PostgreSQL) facilement
+    \item [\checkmark] Plus facile à tester (FakeRepository)
+  \end{itemize}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Pattern Singleton}
+  
+  \textbf{Le Problème~:} Comment s'assurer qu'on a \textbf{qu'une seule instance} d'un objet~?
+  
+  \vspace{0.3cm}
+  
+  \textbf{Exemple concret~:} Une connexion à la base de données~: on en veut qu'une seule~!
+  
+  \vspace{0.3cm}
+  
+  \textbf{La Solution~:}
+  
+  \begin{itemize}
+    \item Variable privée qui stocke l'unique instance
+    \item Constructeur privé (on ne peut pas faire \texttt{new ConnexionBD()})
+    \item Fonction statique \texttt{obtenir\_instance()} qui retourne toujours la même instance
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Utilisation~:}
+  
+  \begin{exampleblock}{}
+    \texttt{connexion1 = ConnexionBD.obtenir\_instance()} \\
+    \texttt{connexion2 = ConnexionBD.obtenir\_instance()}
+    
+    \vspace{0.2cm}
+    
+    → connexion1 et connexion2 sont LA MÊME connexion~!
+  \end{exampleblock}
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Pattern Observer}
+  
+  \textbf{Le Problème~:} Comment notifier plusieurs objets quand quelque chose change~?
+  
+  \vspace{0.3cm}
+  
+  \textbf{Exemple concret~:} Quand un produit arrive en stock, il faut~:
+  \begin{itemize}
+    \item Envoyer un email aux clients intéressés
+    \item Mettre à jour l'affichage du site
+    \item Enregistrer dans les logs
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{La Solution~:}
+  
+  \begin{itemize}
+    \item Le produit a une liste d'observateurs
+    \item Quand le stock change, on notifie tous les observateurs
+    \item Chaque observateur réagit à sa manière
+  \end{itemize}
+  
+  \vspace{0.3cm}
+  
+  \textbf{Avantage~:} Les observateurs ne se connaissent pas entre eux~!
+
+\end{frame}
+
+% =====================================================
+\begin{frame}{Les Qualités d'une Bonne Architecture}
+  
+  \begin{center}
+    \small
+    \begin{tabular}{|l|p{6cm}|}
+      \hline
+      \textbf{Qualité} & \textbf{Description} \\
+      \hline
+      Maintenabilité & Facile à corriger et à améliorer \\
+      \hline
+      Testabilité & Facile à tester \\
+      \hline
+      Évolutivité & Facile d'ajouter des fonctionnalités \\
+      \hline
+      Scalabilité & Peut gérer plus d'utilisateurs \\
+      \hline
+      Performance & Rapide et efficace \\
+      \hline
+      Sécurité & Protégé contre les attaques \\
+      \hline
+      Simplicité & Facile à comprendre \\
+      \hline
+      Réutilisabilité & Les morceaux sont réutilisables \\
+      \hline
+    \end{tabular}
+  \end{center}
+
+\end{frame}
