@@ -96,7 +96,7 @@
   
   \vspace{0.3cm}
   
-  \textbf{Quand l'utiliser~?} Application moyenne à grande, équipe moyenne, migration vers microservices
+  \textbf{Quand l'utiliser~?} Application moyenne à grande, équipe moyenne
 
 \end{frame}
 
@@ -109,17 +109,6 @@
     \item Le \textbf{Client}~: l'interface utilisateur
     \item Le \textbf{Serveur}~: la logique et les données
   \end{itemize}
-  
-  \vspace{0.3cm}
-  
-  \begin{block}{Analogie}
-    Un restaurant~:
-    \begin{itemize}
-      \item Le client = vous, à votre table
-      \item Le serveur (de restaurant) = prend vos commandes et les apporte
-      \item La cuisine = prépare les plats
-    \end{itemize}
-  \end{block}
   
   \vspace{0.3cm}
   
@@ -165,37 +154,6 @@
 \end{frame}
 
 % =====================================================
-\begin{frame}{Architecture en Couches (Layered)}
-  
-  \textbf{C'est quoi~?} Organisation \textbf{logique} du code en couches empilées.
-  
-  \vspace{0.3cm}
-  
-  \begin{alertblock}{Différence avec N-Tiers}
-    \begin{itemize}
-      \item \textbf{N-Tiers} = physique (machines différentes)
-      \item \textbf{En Couches} = logique (dans le code)
-    \end{itemize}
-  \end{alertblock}
-  
-  \vspace{0.3cm}
-  
-  \textbf{Couches typiques~:}
-  \begin{enumerate}
-    \item Couche Présentation (Controllers, UI)
-    \item Couche Application (Use Cases, Workflows)
-    \item Couche Métier / Domain (Logique métier, Entities)
-    \item Couche Services (Services externes, APIs)
-    \item Couche Persistance (Repository, DAO)
-  \end{enumerate}
-  
-  \vspace{0.3cm}
-  
-  \textbf{Quand l'utiliser~?} La plupart des applications, combiné avec d'autres patterns
-
-\end{frame}
-
-% =====================================================
 \begin{frame}{Architecture Microservices (1/2)}
   
   \textbf{C'est quoi~?} L'application est \textbf{découpée en plein de petits services indépendants}.
@@ -211,17 +169,6 @@
   \end{itemize}
   
   \vspace{0.3cm}
-  
-  \begin{block}{Analogie}
-    Une ville avec plein de commerces indépendants~:
-    \begin{itemize}
-      \item La boulangerie vend du pain
-      \item La pharmacie vend des médicaments
-      \item La banque gère l'argent
-    \end{itemize}
-    
-    Chaque commerce est indépendant, mais ils travaillent ensemble~!
-  \end{block}
 
 \end{frame}
 
@@ -285,37 +232,6 @@
   \vspace{0.3cm}
   
   \textbf{Quand l'utiliser~?} Grandes entreprises avec beaucoup de systèmes existants, besoin d'intégration, environnements legacy
-
-\end{frame}
-
-% =====================================================
-\begin{frame}{Architecture Hexagonale (Ports \& Adapters)}
-  
-  \textbf{C'est quoi~?} Mettre la \textbf{logique métier au centre}, et l'isoler de tout le reste (BD, interfaces, APIs externes).
-  
-  \vspace{0.3cm}
-  
-  \textbf{Le principe~:}
-  \begin{itemize}
-    \item Au \textbf{centre}~: le domaine métier (la vraie valeur de l'application)
-    \item Autour~: des \textbf{ports} (interfaces)
-    \item Encore autour~: des \textbf{adaptateurs} (implémentations concrètes)
-  \end{itemize}
-  
-  \vspace{0.3cm}
-  
-  \begin{block}{Analogie}
-    Une prise électrique~:
-    \begin{itemize}
-      \item Le \textbf{port} = la prise dans le mur (interface standardisée)
-      \item Les \textbf{adaptateurs} = les différents chargeurs qu'on peut brancher
-      \item Le \textbf{centre} (métier) = l'appareil qu'on veut charger
-    \end{itemize}
-  \end{block}
-  
-  \vspace{0.3cm}
-  
-  \textbf{Quand l'utiliser~?} Applications avec logique métier complexe, besoin de testabilité maximale, Domain-Driven Design (DDD)
 
 \end{frame}
 

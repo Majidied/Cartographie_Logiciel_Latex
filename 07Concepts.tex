@@ -30,31 +30,21 @@
 \end{frame}
 
 % =====================================================
-\begin{frame}{Principe 1~: L'Abstraction}
+\begin{frame}[fragile]{Principe 1~: L'Abstraction}
   
   \textbf{C'est quoi~?} Cacher les détails compliqués et ne montrer que l'essentiel.
   
   \vspace{0.3cm}
   
-  \begin{block}{Analogie}
-    Quand vous conduisez une voiture~:
-    \begin{itemize}
-      \item Vous appuyez sur l'accélérateur → la voiture avance
-      \item Vous ne savez pas comment le moteur fonctionne (et vous n'avez pas besoin de le savoir~!)
-    \end{itemize}
-  \end{block}
   
-  \vspace{0.3cm}
   
   \textbf{Dans le code~:}
-  
+  \begin{lstlisting}[language=Java,basicstyle=\ttfamily\footnotesize,frame=single,numbers=left]
+envoyer_email(destinataire, message);
+    \end{lstlisting}
   \begin{exampleblock}{Interface simple (abstraction)}
-    \texttt{envoyer\_email(destinataire, message)}
-    
-    \vspace{0.2cm}
-    
-    On ne voit pas les détails~: connexion SMTP, encodage, gestion des erreurs...
-  \end{exampleblock}
+    On ne voit pas les détails : connexion SMTP, encodage, gestion des erreurs...
+\end{exampleblock}
   
   \vspace{0.3cm}
   
@@ -63,33 +53,25 @@
 \end{frame}
 
 % =====================================================
-\begin{frame}{Principe 2~: L'Encapsulation}
+\begin{frame}[fragile]{Principe 2~: L'Encapsulation}
   
   \textbf{C'est quoi~?} Mettre les données et les fonctions qui les manipulent dans une \og{}boîte fermée\fg{}.
   
   \vspace{0.3cm}
   
-  \begin{block}{Analogie}
-    Une télécommande de TV~:
-    \begin{itemize}
-      \item À l'intérieur~: des circuits compliqués
-      \item À l'extérieur~: juste des boutons simples
-      \item Vous ne pouvez pas toucher directement les circuits (c'est protégé~!)
-    \end{itemize}
-  \end{block}
-  
-  \vspace{0.3cm}
-  
   \textbf{Dans le code~:}
-  
-  \begin{itemize}
-    \item Données PRIVÉES (protégées)~: \texttt{solde = 1000€}
-    \item Fonctions PUBLIQUES (accessibles)~: \texttt{deposer(montant)}, \texttt{retirer(montant)}
-  \end{itemize}
-  
+  \begin{lstlisting}[language=Java,basicstyle=\ttfamily\footnotesize,frame=single,numbers=left]
+    public class CompteBancaire {
+      // Donnee privee (protegees)
+      private double solde = 1000;
+      public void deposer(double montant) {
+          solde += montant;
+      }
+    }
+    \end{lstlisting}  
   \vspace{0.3cm}
   
-  \textbf{Pourquoi c'est important~?} Les données sont protégées, on contrôle les modifications, impossible de mettre un solde négatif~!
+  \textbf{Pourquoi c'est important~?} Les données sont protégées, On contrôle comment les données sont modifiées.
 
 \end{frame}
 
@@ -97,18 +79,6 @@
 \begin{frame}{Principe 3~: La Séparation des Responsabilités}
   
   \textbf{C'est quoi~?} Chaque morceau de code doit avoir \textbf{une seule responsabilité} bien définie.
-  
-  \vspace{0.3cm}
-  
-  \begin{block}{Analogie}
-    Dans une cuisine de restaurant~:
-    \begin{itemize}
-      \item Le chef cuisine
-      \item Le serveur sert
-      \item Le plongeur fait la vaisselle
-      \item \alert{Chacun fait SON travail, pas celui des autres~!}
-    \end{itemize}
-  \end{block}
   
   \vspace{0.3cm}
   
@@ -149,15 +119,6 @@
   
   \vspace{0.3cm}
   
-  \begin{block}{Analogie}
-    \begin{itemize}
-      \item \textbf{Fort couplage}~: Des jumeaux siamois (si l'un bouge, l'autre doit bouger)
-      \item \textbf{Faible couplage}~: Deux amis (chacun peut faire sa vie de son côté)
-    \end{itemize}
-  \end{block}
-  
-  \vspace{0.3cm}
-  
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{alertblock}{Mauvais (fort couplage)}
@@ -186,16 +147,6 @@
 \begin{frame}{Principe 5~: La Forte Cohésion}
   
   \textbf{C'est quoi~?} Les éléments d'un même module doivent être \textbf{fortement liés} entre eux.
-  
-  \vspace{0.3cm}
-  
-  \begin{block}{Analogie}
-    Dans une boîte à outils~:
-    \begin{itemize}
-      \item \textbf{Forte cohésion}~: Toutes les clés ensemble, tous les tournevis ensemble
-      \item \textbf{Faible cohésion}~: Un marteau avec une brosse à dents et un livre de cuisine (ça n'a aucun sens~!)
-    \end{itemize}
-  \end{block}
   
   \vspace{0.3cm}
   
