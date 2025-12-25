@@ -3,221 +3,32 @@
 \section{Démarche en 4~Étapes}
 
 % =====================================================
-\begin{frame}{Comment Créer une Architecture Logicielle~?}
-  
-  \begin{alertblock}{Principe}
-    Créer une architecture logicielle, c'est comme construire une maison~: on ne commence pas par le toit~!
-  \end{alertblock}
-  
-  \vspace{0.3cm}
-  
-  Il faut suivre \textbf{4~étapes}, et on les répète plusieurs fois (\textbf{de manière itérative et incrémentale}).
-  
-  \vspace{0.5cm}
-  
-  \textbf{C'est quoi \og{}itérative et incrémentale\fg{}~?}
-  
-  \begin{itemize}
-    \item \textbf{Itérative} = on répète les étapes plusieurs fois, en améliorant à chaque fois
-    \item \textbf{Incrémentale} = on ajoute des morceaux petit à petit, comme des couches de peinture
-  \end{itemize}
+\begin{frame}{Démarche en 4~Étapes (schéma)}
+
+  \begin{center}
+    \begin{tikzpicture}[
+      node distance=0.7cm,
+      every node/.style={font=\bfseries},
+      step/.style={rounded corners, minimum width=7.8cm, minimum height=0.8cm, align=center, fill=none},
+      arrow/.style={->, thick}
+    ]
+      \node[rounded corners, minimum width=7.8cm, minimum height=0.8cm, align=center, fill=IFSPPrimario!25] (s1) {1. Analyser les besoins};
+      \node[rounded corners, minimum width=7.8cm, minimum height=0.8cm, align=center, fill=IFSPAccent!20, below=of s1] (s2) {2. Définir la structure};
+      \node[rounded corners, minimum width=7.8cm, minimum height=0.8cm, align=center, fill=IFSPPrimario!25, below=of s2] (s3) {3. Concevoir les composants};
+      \node[rounded corners, minimum width=7.8cm, minimum height=0.8cm, align=center, fill=IFSPAccent!20, below=of s3] (s4) {4. Valider \& ajuster};
+
+      \draw[arrow] (s1) -- (s2);
+      \draw[arrow] (s2) -- (s3);
+      \draw[arrow] (s3) -- (s4);
+
+      \draw[arrow, dashed] ([xshift=0.2cm]s4.east) .. controls +(0.6,0) and +(0.6,0) .. ([xshift=0.2cm]s1.east);
+      \node[font=\small] at ([xshift=1.3cm,yshift=-1.5cm]s2.east) {itératif};
+    \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.1cm}
+  \centering
+  \small Itératif (boucle) \textbullet{} incrémental (ajouts progressifs)
 
 \end{frame}
 
-% =====================================================
-\begin{frame}{ÉTAPE 1~: Analyser les Besoins}
-  
-  \textbf{But~:} Comprendre ce que l'application doit faire.
-  
-  \vspace{0.3cm}
-  
-  \textbf{Questions à se poser~:}
-  
-  \begin{itemize}
-    \item Qui va utiliser l'application~? (des clients~? des employés~?)
-    \item Qu'est-ce que l'application doit faire~? (vendre des produits~? gérer des stocks~?)
-    \item Combien de personnes vont l'utiliser~? (10~? 1000~? 1~million~?)
-    \item Quelles sont les contraintes~? (budget~? délai~? sécurité~?)
-  \end{itemize}
-  
-  \vspace{0.3cm}
-  
-  \begin{exampleblock}{Exemple concret~: Application e-commerce}
-    \begin{itemize}
-      \item Les clients doivent pouvoir chercher des produits
-      \item Les clients doivent pouvoir payer en ligne
-      \item L'application doit supporter 10\,000 clients simultanés
-      \item Les paiements doivent être ultra-sécurisés
-    \end{itemize}
-  \end{exampleblock}
-
-\end{frame}
-
-% =====================================================
-\begin{frame}{ÉTAPE 2~: Définir la Structure}
-  
-  \textbf{But~:} Choisir comment organiser l'application.
-  
-  \vspace{0.3cm}
-  
-  \textbf{Décisions à prendre~:}
-  
-  \begin{enumerate}
-    \item \textbf{Quel type d'architecture choisir~?}
-    \begin{itemize}
-      \item Monolithique~? (tout en un seul bloc)
-      \item Microservices~? (plein de petits services indépendants)
-      \item Client-Serveur~? (un client qui parle à un serveur)
-    \end{itemize}
-    
-    \item \textbf{Combien de couches~?}
-    \begin{itemize}
-      \item 3~couches~? (Présentation, Logique, Données)
-      \item 5~couches~? (encore plus de séparation)
-    \end{itemize}
-    
-    \item \textbf{Quels frameworks utiliser~?}
-    \begin{itemize}
-      \item React pour l'interface~?
-      \item Spring Boot pour le backend~?
-    \end{itemize}
-  \end{enumerate}
-
-\end{frame}
-
-% =====================================================
-\begin{frame}{ÉTAPE 2~: Définir la Structure (Analogie)}
-  
-  \begin{block}{Analogie}
-    C'est comme décider si votre maison sera~:
-    
-    \begin{itemize}
-      \item Une maison individuelle (monolithique)
-      \item Un immeuble avec plusieurs appartements (microservices)
-      \item Le nombre d'étages (les couches)
-    \end{itemize}
-  \end{block}
-
-\end{frame}
-
-% =====================================================
-\begin{frame}{ÉTAPE 3~: Concevoir les Composants (1/2)}
-  
-  \textbf{But~:} Créer les briques de base de l'application.
-  
-  \vspace{0.3cm}
-  
-  \textbf{Ce qu'on fait~:}
-  
-  \begin{enumerate}
-    \item \textbf{Identifier les composants nécessaires}
-    \begin{itemize}
-      \item Composant \og{}Liste des produits\fg{}
-      \item Composant \og{}Panier d'achat\fg{}
-      \item Composant \og{}Formulaire de paiement\fg{}
-    \end{itemize}
-    
-    \item \textbf{Définir comment ils communiquent}
-    \begin{itemize}
-      \item Le panier envoie les infos au paiement
-      \item Le paiement vérifie avec la banque
-      \item La banque renvoie OK ou KO
-    \end{itemize}
-  \end{enumerate}
-
-\end{frame}
-
-% =====================================================
-\begin{frame}{ÉTAPE 3~: Concevoir les Composants (2/2)}
-  
-  \begin{enumerate}
-    \setcounter{enumi}{2}
-    \item \textbf{Choisir les design patterns}
-    \begin{itemize}
-      \item Pattern MVC pour séparer l'affichage de la logique
-      \item Pattern Repository pour accéder aux données
-    \end{itemize}
-  \end{enumerate}
-  
-  \vspace{0.5cm}
-  
-  \begin{block}{Analogie}
-    C'est comme décider~:
-    \begin{itemize}
-      \item Quels meubles mettre dans chaque pièce
-      \item Où placer les prises électriques
-      \item Comment les pièces sont connectées
-    \end{itemize}
-  \end{block}
-
-\end{frame}
-
-% =====================================================
-\begin{frame}{ÉTAPE 4~: Valider et Ajuster}
-  
-  \textbf{But~:} Vérifier que l'architecture fonctionne bien.
-  
-  \vspace{0.3cm}
-  
-  \textbf{Ce qu'on vérifie~:}
-  
-  \begin{enumerate}
-    \item \textbf{La qualité}
-    \begin{itemize}
-      \item Est-ce que le code est propre et bien organisé~?
-      \item Est-ce qu'on peut facilement ajouter de nouvelles fonctionnalités~?
-    \end{itemize}
-    
-    \item \textbf{Les performances}
-    \begin{itemize}
-      \item Est-ce que l'application est rapide~?
-      \item Est-ce qu'elle peut gérer beaucoup d'utilisateurs~?
-    \end{itemize}
-    
-    \item \textbf{La sécurité}
-    \begin{itemize}
-      \item Est-ce que les données sont protégées~?
-      \item Est-ce qu'on peut pirater l'application~?
-    \end{itemize}
-  \end{enumerate}
-  
-  \vspace{0.3cm}
-  
-  \begin{alertblock}{Si ça ne va pas}
-    On retourne à l'étape 2~ou 3~et on améliore~!
-  \end{alertblock}
-
-\end{frame}
-
-% =====================================================
-\begin{frame}{Pourquoi \og{}Itératif et Incrémental\fg{}~?}
-  
-  \begin{alertblock}{Parce qu'on ne peut pas tout prévoir~!}
-    Au début du projet, on ne sait pas tout. Donc~:
-  \end{alertblock}
-  
-  \vspace{0.3cm}
-  
-  \begin{itemize}
-    \item On fait une première version simple (Itération 1)
-    \item On la teste
-    \item On l'améliore (Itération 2)
-    \item On ajoute des fonctionnalités (Incrémental)
-    \item On teste encore
-    \item Et ainsi de suite...
-  \end{itemize}
-  
-  \vspace{0.5cm}
-  
-  \begin{exampleblock}{Exemple}
-    \begin{itemize}
-      \item \textbf{Itération 1}~: Afficher une liste de produits
-      \item \textbf{Itération 2}~: Ajouter un panier
-      \item \textbf{Itération 3}~: Ajouter le paiement
-      \item \textbf{Itération 4}~: Ajouter la gestion des comptes clients
-    \end{itemize}
-    
-    Chaque itération = une version de plus en plus complète~!
-  \end{exampleblock}
-
-\end{frame}
